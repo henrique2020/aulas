@@ -1,0 +1,81 @@
+Lógica Proposicional:
+	| ~ | Negação (not)
+		Sócrates não é um homem
+	| ^ | Conjunção (and)
+		Sócrates é um homem e é mortal
+	| v | Disjunção (or)
+		Sócrates é homem ou é mortal
+	| --> | Implicação (if)
+		Se Sócrates é homem então é mortal
+	| <--> | Equivalência
+		Sócrates é mortal, se e somente se, ele é homem
+______________________________________________
+	
+Fórmulas bem formadas
+ -- Toda proposição é uma fórmula.
+ -- Se A é uma fórmula, então sua negação (~A) também é
+ -- Se A e B são fórmulas, esntão também são fórmulas:
+	a conjunção (A^B)
+	a disjunção (AvB)
+	a implicação (A-->B)
+	a equivalência (A<-->B)
+
+--------------------------------------------------------------------------------------
+
+(A) É verão	|	(C) Faz frio	|	(E) Neva
+(B) É inverno	|	(D) Faz calor	|	(F) Chove
+
+1. É inverno.	|	(B)
+2. Não é inverno.	|	(~B)
+3. É verão ou é inverno.	|	(AvB)
+4. É inverno mas faz calor.	|	(B^D)
+5. Não é o caso de fazer frio.	|	(~C)
+6. Se é verão então faz calor	|	(A-->D)
+7. Não é o caso de fazer frio, então é verão |  (~C-->B)
+8. Neva se e somente se é inverno e faz frio.	|	(C<-->(B^C))
+9. Se chove e não faz calor então é inverno.	|	(F^~D)-->B)
+10. Ou faz calor, ou faz frio e chove.	|	(Dv(C^F))
+11. Ou chove e faz frio, ou neva e chove.	|	((F^C)v(E^F))
+
+
+SLIDES: (Exercicio -- Formalizar os enunciados)
+1. P^S
+2. ~M^~E
+3. SvT
+4. ~T-->S
+5. D^P
+6. FvC
+7. ~G^B
+8. Sv~E
+9. ~(ACvAG)
+10. (R^~A)-->P^(~C-->P)
+11. (F)(JvF)
+12. 
+
+--------------------------------------------------------------------------------------
+
+TDE:
+Guarda 1: Porta 1
+Guarda 2: Porta 2
+Se guarda 1 fala sempre a verdade:
+ -- Se pedir para ele qual porta o outro falaria:
+        Guarda 2 diria porta 2
+        -- Se sair por ela: morte
+        -- Se sair pela outa: liberade
+ Se guarda 2 fala sempre mentira:
+  -- Se pedir para ele qual porta o outro falaria::
+        Guarda 1 diria porta 2:
+        -- Se sair por ela: morte
+        -- Se sair pela outra: liberdade
+ Deve-se perguntar a um guarda e sair pela porta contrária!!!
+ 
+ 
+ B | 3 | E | 4
+ "Se há uma vogal, há um número par do outro lado"
+Se virar a carta:
+    B: Pode ser par ou impar. Nenhuma afirmação
+    3: Supõem-se que sejá uma consoante -> Se não for consoante estará errado
+    E: Caso não seja par estará errado!
+    4: Pode ser uma vogal ou consoante
+Resposta: A carta 3!
+Resposta: A carta E!

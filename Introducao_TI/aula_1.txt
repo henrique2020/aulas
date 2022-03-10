@@ -1,0 +1,12 @@
+a)
+-- Analista de redes
+b)
+-- É o responsável por garantir o funcionamento e qualidade da rede de uma empresa
+c)
+-- Estudar / realizar cursos sobre infraestrutura de redes, redes de computadores e protocolos e serviços de redes
+d)
+-- Atua na área de infraestrutura, realizando a instalação, manutenção e configuração da rede. Atua também na área da segurança, sendo responśavel por evitar invasões a rede
+e)
+-- Com salário base entorno de R$ 2500,00 pode chegar a R$ 5000,00 com pós-graduações e especializações
+f)
+--  Deve gostar de tecnologia, lógica/planejamento e se manter atualizado
