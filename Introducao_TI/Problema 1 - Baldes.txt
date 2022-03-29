@@ -1,0 +1,28 @@
+Problema 1 - Baldes
+a)
+Objetivo - Retirar 7L da bica
+Estado inicial - Baldes vazios, bica completa
+Variáveis e tipos: 2 baldes, 1 com 5L e outro com 3L
+Sequência lógica:
+ - Encher o balde de 5L
+ - Esvaziar o balde de 5L (usar)
+ - Encher o balde de 5L
+ - Passar 3L do balde de 5L para o balde de 3L
+ - Esvaziar balde de 5L (contém 2L) (usar)
+ - Devolver a àgua do balde de 3L para a bica
+Estado final: Bica com 7L de àgua a menos, baldes vazios
+
+b)
+Objetivo - Retirar 4L da bica
+Estado inicial - Baldes vazios, bica completa
+Variáveis e tipos: 2 baldes, 1 com 5L e outro com 3L
+Sequência lógica:
+ - Encher o balde de 3L
+ - Esvaziar o balde de 3L (usar)
+ - Encher o balde de 3L
+ - Passar 3L do balde de 3L para o balde de 5L
+ - Encher o balde de 3L
+ - Passar 2L do balde de 3L para o balde de 5L
+ - Esvaziar o balde de 3L (contém 1L) (usar)
+ - Devolver a àgua do balde de 5L para a bica
+Estado final: Bica com 4L de àgua a menos, baldes vazios
