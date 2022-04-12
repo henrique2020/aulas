@@ -5,10 +5,9 @@ int retorna_sobrenome(char nome[100], char sobrenome[100]){
     for (i = 0; nome[i] != '\0'; i++){
         if(nome[i] == ' '){ ult = i; }
     }
-    for (i = (ult+1), k = 0; nome[i] != '\0'; i++, k++){
+    for (i = (ult+1), k = 0; nome[i-1] != '\0'; i++, k++){
         sobrenome[k] = nome[i];
     }
-    sobrenome[i] = '\0';
     
 }
 
@@ -17,5 +16,5 @@ int main(){
     char sobrenome[100];
 
     retorna_sobrenome(nome_completo, sobrenome);
-    printf("%s\n", sobrenome);
+    printf("Sobrenome: %s\n", sobrenome);
 }
