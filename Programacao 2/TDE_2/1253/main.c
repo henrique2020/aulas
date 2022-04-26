@@ -10,7 +10,9 @@ int main(){
         getchar();
         fgets(frase, len, stdin);
         frase[strlen(frase)-1] = '\0';
+        
         scanf("%d", &cod);
+        getchar();
 
         for(j = 0; frase[j] != '\0'; j++){
             int pos = frase[j] - cod;
