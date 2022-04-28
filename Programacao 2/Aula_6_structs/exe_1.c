@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <string.h>
+
+//strcmp(S1, S2)    //Causa diferença entre letras maiusculas e minusculas
+//strcasecmp(S1, S2)    //Ignora a diferença entre letras maiusculas e minusculas
 
 #define N 5
 
@@ -14,7 +18,8 @@ void ordena_dados(FUNC f[N]){
     FUNC aux;
     for (i = 0; i < N-1; i++){
         for (j = 0; j < N-1-i; j++){
-            if(f[j].salario < f[j+1].salario){  //DECRESCENTE
+            //if(f[j].salario < f[j+1].salario){  //ORDENA PELO SALARIO DECRESCENTE
+            if(strcasecmp(f[j].nome, f[j+1].nome) > 0){  //ORDENA EM ORDE ALFABETICA
                 aux = f[j];
                 f[j] = f[j+1];
                 f[j+1] = aux;
