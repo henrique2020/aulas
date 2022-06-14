@@ -1,0 +1,6 @@
+Fulano de Tal
+6.3 5.7 7.1
+Sicrano Silva
+3.4 5.4 4.7
+Beltrano Alves
+9.2 6.8 8.3
