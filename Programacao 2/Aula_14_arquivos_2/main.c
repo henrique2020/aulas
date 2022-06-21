@@ -41,7 +41,7 @@ void escreve_funcionarios(char *arquivo, FUNCIONARIO *v, int nf){
     int i, j;
 
     for(i = 0; i<nf-1; i++){
-        for(j = 0; j<nf-1; j++){
+        for(j = 0; j<nf-1-i; j++){
             if(strcasecmp(v[j].nome, v[j+1].nome) > 0){
                 FUNCIONARIO aux = v[j];
                 v[j] = v[j+1];
