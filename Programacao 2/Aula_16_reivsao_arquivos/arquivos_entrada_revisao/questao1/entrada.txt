@@ -1,0 +1,9 @@
+4
+mamao 2.19
+cebola 3.10
+tomate 2.80
+uva 2.73
+3
+mamao 2
+tomate 1
+uva 3
