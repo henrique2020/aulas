@@ -12,7 +12,7 @@ public class Primo {
         else if (num == 2) {
             return true;
         } else {
-            for (int i = 2; i < (int) num+1/2; i++) {
+            for (int i = 2; i < (int) (num+1)/2; i++) {
                 if(num%i == 0){
                     return false;
                 }
