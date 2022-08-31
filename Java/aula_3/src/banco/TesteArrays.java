@@ -14,18 +14,18 @@ public class TesteArrays {
 		Cliente[] listaClientes = new Cliente[5];
 		
 		for (int i = 0; i < listaClientes.length; i++) {
-			listaClientes[i] = new Cliente();
+			listaClientes[i] = new Cliente("");
 		}
 		
-		listaClientes[0].nome = "Henrique";
-		listaClientes[0].endereco = "Vila Rica - Feliz";
-		listaClientes[0].cpf = "01234567890";
+		listaClientes[0].setNome("Henrique");
+		listaClientes[0].setEndereco("Vila Rica - Feliz");
+		listaClientes[0].setCpf("01234567890");
 		
-		listaClientes[1].defineNome("Augusto");
+		listaClientes[1].setNome("Augusto");
 		
 		
 		for (int i = 0; i < listaClientes.length; i++) {
-			System.out.println(listaClientes[i].nome+" | "+listaClientes[i].endereco+" | "+listaClientes[i].cpf);
+			System.out.println(listaClientes[i].getNome()+" | "+listaClientes[i].getEndereco()+" | "+listaClientes[i].getCpf());
 		}
 	}
 

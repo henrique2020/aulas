@@ -8,24 +8,24 @@ public class TesteDoBanco {
 		ContaCorrente conta2 = new ContaCorrente();
 		
 		conta1.depositar(7654);
-		System.out.println("saldo : "+conta1.saldo);
+		System.out.println("saldo : "+conta1.getSaldo());
 		conta1.depositar(10000);
-		System.out.println("saldo : "+conta1.saldo);
+		System.out.println("saldo : "+conta1.getSaldo());
 		
 		conta2.depositar(500);
-		System.out.println("saldo : "+conta2.saldo);
+		System.out.println("saldo : "+conta2.getSaldo());
 		
 		
 		
 		Cliente cli1, cli2;
 		
-		cli1 = new Cliente();
-		cli2 = new Cliente();
+		cli1 = new Cliente("");
+		cli2 = new Cliente("");
 		
-		cli1.nome = "marcos";
-		cli1.cpf = "3245234";
+		cli1.setNome("marcos");
+		cli1.setCpf("3245234");
 		
-		cli2.nome = "maria";
+		cli2.setNome("maria");
 		
 
 	}
