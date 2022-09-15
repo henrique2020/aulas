@@ -1,4 +1,4 @@
-package banco;
+package view;
 
 public class Principal {
 

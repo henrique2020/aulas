@@ -3,9 +3,11 @@
 //Depositar e sacar chamam a função ver_saldo()
 //Opções transformadas em uma função que é chamada sempre que necessário
 
-package banco;
+package view;
 
 import java.util.Scanner;
+import model.Cliente;
+import model.ContaCorrente;
 
 public class InterfaceDeUsuario {
 

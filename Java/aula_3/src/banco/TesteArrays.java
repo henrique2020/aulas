@@ -1,5 +1,7 @@
 package banco;
 
+import model.Cliente;
+
 public class TesteArrays {
 
 	public static void main(String[] args) {

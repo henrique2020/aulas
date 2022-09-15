@@ -1,4 +1,4 @@
-package banco;
+package model;
 
 public class Cliente {
 
