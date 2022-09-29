@@ -4,16 +4,18 @@ public class Quarto {
     
 	private int numero;
     private int andar;
-    private float valor;
+    private float diaria;
+	private String nome;
     private String tipo;
     
     //Object
 	public Quarto() {}
 
-	public Quarto(int numero, int andar, float valor, String tipo) {
+	public Quarto(int numero, int andar, float diaria, String nome, String tipo) {
 		this.numero = numero;
 		this.andar = andar;
-		this.valor = valor;
+		this.diaria = diaria;
+		this.nome = nome;
 		this.tipo = tipo;
 	}
 	
@@ -34,12 +36,20 @@ public class Quarto {
 		this.andar = andar;
 	}
 
-	public float getValor() {
-		return valor;
+	public float getDiaria() {
+		return diaria;
 	}
 
-	public void setValor(float valor) {
-		this.valor = valor;
+	public void setDiaria(float diaria) {
+		this.diaria = diaria;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getTipo() {

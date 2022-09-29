@@ -1,40 +1,42 @@
 package model;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Data {
-	private int dia;
-	private int mês;
-	private int ano;
+	Calendar data;
 	
     //Object
-	public Data(int dia, int mês, int ano) {
-		this.dia = dia;
-		this.mês = mês;
-		this.ano = ano;
+	public Data(int dia, int mes, int ano) {
+		data = new GregorianCalendar(ano, mes, dia);
 	}
 
+	public Calendar getData() {
+		return data;
+	}
+	
 	//Getters and Setters
 	public int getDia() {
-		return dia;
+		return data.get(Calendar.DAY_OF_MONTH);
 	}
 
 	public void setDia(int dia) {
-		this.dia = dia;
+		this.data.set(Calendar.DAY_OF_MONTH, dia);
 	}
 
-	public int getMês() {
-		return mês;
+	public int getMes() {
+		return data.get(Calendar.MONTH+1);
 	}
 
-	public void setMês(int mês) {
-		this.mês = mês;
+	public void setMes(int mes) {
+		this.data.set(Calendar.MONTH, mes);
 	}
 
 	public int getAno() {
-		return ano;
+		return data.get(Calendar.YEAR);
 	}
 
 	public void setAno(int ano) {
-		this.ano = ano;
+		this.data.set(Calendar.YEAR, ano);
 	}
-
 }
