@@ -4,18 +4,15 @@ public class Funcionario {
     
 	private int id;
 	private String nome;
-	private String cpf;
-	private String telefone;
-	private Data data_nascimento;
-	private Endereco endereco;
+	private String senha;
 	
 	//Object
 	public Funcionario() {}
 
-	public Funcionario(int id, String nome, String cpf) {
+	public Funcionario(int id, String nome, String senha) {
 		this.id = id;
 		this.nome = nome;
-		this.cpf = cpf;
+		this.senha = senha;
 	}
 
 	//Getters and Setters
@@ -35,36 +32,11 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setSenh(String senha) {
+		this.senha = senha;
 	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Data getData_nascimento() {
-		return data_nascimento;
-	}
-
-	public void setData_nascimento(Data data_nascimento) {
-		this.data_nascimento = data_nascimento;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-	
 }

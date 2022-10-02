@@ -73,4 +73,17 @@ public class Reserva {
 		return (int) ChronoUnit.DAYS.between(data_de_entrada.getData().toInstant(),  data_de_saida.getData().toInstant());
 	}
 	
+	public boolean verificaDisponibilidade(Data entrada, Data saida) {
+		if (entrada.getData().compareTo(data_de_entrada.getData()) >= 0 && entrada.getData().compareTo(data_de_saida.getData()) <= 0) {
+			return false;
+		}
+		else if (saida.getData().compareTo(data_de_entrada.getData()) >= 0 && saida.getData().compareTo(data_de_saida.getData()) <= 0) {
+			return false;
+		}
+		else if (entrada.getData().compareTo(data_de_entrada.getData()) <= 0 && saida.getData().compareTo(data_de_saida.getData()) >= 0) {
+			return false;
+		}
+		return true;
+	}
+	
 }
