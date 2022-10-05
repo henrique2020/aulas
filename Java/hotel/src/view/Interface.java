@@ -348,6 +348,7 @@ public class Interface {
 					rep = false;
 					break;
 			}
+			System.out.println();
 		}
 		scan.close();
 	}
