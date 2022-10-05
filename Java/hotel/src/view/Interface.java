@@ -31,7 +31,7 @@ public class Interface {
 		System.out.println("0. Realizar Logoff");
 		
 		int op = scan.nextInt();
-		scan.nextLine();
+		scan.nextLine();	//Limpa buffer
 		
 		return op;
 	}
@@ -58,16 +58,13 @@ public class Interface {
 	}
 	
 	
-
-	
 	private Data pega_data(){
 		int[] dt = Arrays.stream(scan.nextLine().split("/")).mapToInt(Integer::parseInt).toArray();
 		Data data = new Data(dt[0], dt[1]-1, dt[2]);
 		
 		return data;
 	}
-	
-	
+		
 	
 	private boolean verifica_quartos_disponiveis(Data data_inicial, Data data_final) {
 		ArrayList <Quarto> quartos_disponiveis = new ArrayList <Quarto>();
@@ -103,7 +100,13 @@ public class Interface {
 	}
 	
 	
-	
+    private void lista_funcionarios() {
+    	for(Funcionario auxCFuncionario : funcionario) {
+			System.out.printf("%d: %s\n", auxCFuncionario.getId(), auxCFuncionario.getNome());
+		}
+    }
+    
+    
     public void menu(Funcionario funcionario_logado) {
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");    	
 		Cliente temp_cliente;
@@ -146,7 +149,6 @@ public class Interface {
 					//ENDEREÇO
 					temp_cliente.setEndereco(pega_endereco());
 	
-					//cliente[qtde_cliente++] = temp_cliente;
 					cliente.add(temp_cliente);
 					temp_cliente = null;
 	
@@ -223,7 +225,7 @@ public class Interface {
 						System.out.printf("| Checkout: %s\n", sdf.format(auxReseva.getData_de_saida().getData().getTime()));
 						System.out.printf("| Tempo reservado: %d dia(s)\n", auxReseva.getTempo());
 						System.out.printf("| Valor da diaria: %.2f\n", auxReseva.getQuarto().getDiaria());
-						System.out.printf("| Funcionario(a) responsavel pela reserva: %s (id: %d)\n", auxReseva.getFuncionario().getnome(), auxReseva.getFuncionario().getId());
+						System.out.printf("| Funcionario(a) responsavel pela reserva: %s (id: %d)\n", auxReseva.getFuncionario().getNome(), auxReseva.getFuncionario().getId());
 					}
 					break;
 				
@@ -301,8 +303,8 @@ public class Interface {
     		System.out.println();
     	}
     }
-    
 
+    
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
@@ -321,6 +323,9 @@ public class Interface {
 			scan.nextLine();	//Limpa buffer
 			
 			switch(op) {
+				case 0:
+					i.lista_funcionarios();
+					break;
 				case 1:
 					funcionario_logado = null;
 					System.out.print("Informe o ID de acesso: ");
@@ -401,10 +406,10 @@ public class Interface {
 		temp_funcionario = new Funcionario((funcionario.size()+1001), "Henrique", "");
 		funcionario.add(temp_funcionario);
 		
-		temp_funcionario = new Funcionario((funcionario.size()+1001), "Josefa Marcela Sales", "62358168475");
+		temp_funcionario = new Funcionario((funcionario.size()+1001), "Josefa Marcela Sales", String.valueOf(funcionario.size()+1001));
 		funcionario.add(temp_funcionario);
 
-		temp_funcionario = new Funcionario((funcionario.size()+1001), "Emanuel Pedro Henrique Carvalho", "67946974590");
+		temp_funcionario = new Funcionario((funcionario.size()+1001), "Emanuel Pedro Henrique Carvalho", String.valueOf(funcionario.size()+1001));
 		funcionario.add(temp_funcionario);
 		
 		Quarto temp_quarto;
