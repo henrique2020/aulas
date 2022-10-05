@@ -40,7 +40,7 @@ public class Interface {
 	private Endereco pega_endereco(){
 		Endereco endereco = new Endereco();
 		
-		System.out.println("Informe os dados de endereço do cliente");
+		System.out.println("Informe os dados de endereco do cliente");
 		System.out.print("Numero: ");
 		endereco.setNumero(scan.nextLine());
 		System.out.print("Rua: ");
@@ -198,7 +198,7 @@ public class Interface {
 						System.out.printf("| Data de nascimento: %s\n", sdf.format(auxCliente.getData_nascimento().getData().getTime()));
 						System.out.printf("| Telefone: %s\n", auxCliente.getTelefone());
 						temp_endereco = auxCliente.getEndereco();
-						System.out.println("| Endereço:");
+						System.out.println("| Endereco:");
 						System.out.printf("|  -> %s %s, %s, %s - %s\n", temp_endereco.getRua(), temp_endereco.getNumero(), temp_endereco.getBairro(), temp_endereco.getCidade(), temp_endereco.getEstado());
 						System.out.printf("|  -> CEP: %s\n", temp_endereco.getCep());
 			    	}
