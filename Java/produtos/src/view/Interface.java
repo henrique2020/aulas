@@ -1,0 +1,114 @@
+package view;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import model.Produto;
+import model.Tabela;
+
+public class Interface {
+	private Scanner scan = new Scanner(System.in);
+	private Tabela tabela = new Tabela(10);
+	
+	private int menu_options(){
+		System.out.println("1. Inserir produto");
+		System.out.println("2. Exibir produtos");
+		System.out.println("3. Consultar preco");
+		System.out.println("4. Exibir faixa de preco");
+		System.out.println("0. Sair");
+		
+		int op = scan.nextInt();
+		scan.nextLine();	//Limpa buffer
+		
+		return op;
+	}
+	
+	private void exibe_dados(int codigo, String descricao, double preco) {
+		System.out.println("+-----------------");
+		System.out.printf("| Codigo: %d\n", codigo);
+		System.out.printf("| Descricao: %s\n", descricao);
+		System.out.printf("| Preco final: R$%.2f\n", preco);
+		System.out.println("+-----------------");
+	}
+	
+	public void menu() {
+		int op, codigo, retorno;
+		String descricao;
+		double preco, preco_min, preco_max;
+		ArrayList <Produto> produtos;
+		
+		while (true) {
+    		op = this.menu_options();
+    		
+    		switch(op) {
+				case 0: //Sair
+					return;
+				case 1: //Inserir produto
+					System.out.print("Codigo: ");
+					codigo = scan.nextInt();
+					System.out.print("Preco: ");
+					preco = scan.nextDouble();
+					scan.nextLine();	//Limpa buffer
+					System.out.print("Descricao: ");
+					
+					descricao = scan.nextLine();
+					retorno = tabela.inserirProduto(codigo, preco, descricao);
+					
+					if(retorno == 0) {
+						System.out.println("Produto inserido!");
+					} else if (retorno == 1) {
+						System.out.println("Tabela cheia. Nao e mais possivel inserir produtso");
+					} else {
+						System.out.println("Este codigo ja foi cadastrado anteriormente");
+					}
+					
+					break;
+				case 2: //Exibir produtos
+					produtos = tabela.listarProdutos();
+					if(produtos.size() > 0) {
+						for(Produto prod : produtos) {
+							exibe_dados(prod.getCodigo(), prod.getDescricao(), prod.getPreco());
+						}
+					} else {
+						System.out.println("Nenhum produto cadastrado!");
+					}
+					
+					break;
+				case 3: //Consultar preco
+					System.out.print("Codigo: ");
+					codigo = scan.nextInt();
+					
+					preco = tabela.precoProduto(codigo);
+					if(preco >= 0) {
+						System.out.printf("Preco: R$%.2f\n", preco);
+					}
+					
+					break;
+				case 4: //Exibir faixa de preco
+					System.out.print("Preco minimo: ");
+					preco_min = scan.nextDouble();
+					System.out.print("Preco maximo: ");
+					preco_max = scan.nextDouble();
+					
+					produtos = tabela.filtrarPreco(preco_min, preco_max);
+					
+					if(produtos.size() > 0) {
+						System.out.printf("Os seguintes produtos estao entre R$%.2f - R$%.2f:\n", preco_min, preco_max);
+						for(Produto prod : produtos) {
+							exibe_dados(prod.getCodigo(), prod.getDescricao(), prod.getPreco());
+						}
+					} else {
+						produtos = tabela.listarProdutos();
+						if(produtos.size() > 0) {
+							System.out.println("Nenhum produto nessa faixa de preco!");
+						} else {
+							System.out.println("Nenhum produto cadastrado!");
+						}
+					}
+					
+					break;
+    		}
+    		System.out.println();
+		}
+	}
+}
