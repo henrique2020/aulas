@@ -7,7 +7,7 @@ typedef struct pessoa {
 } Pessoa;
 
 
-void imprime(Pessoa p[]){   #Não é necessário passar o tamnho do array
+void imprime(Pessoa p[]){   //Não é necessário passar o tamnho do array
     int i;
     printf("Saída de dados!\n");
     for(i = 0; i < N; i++){
