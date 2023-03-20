@@ -55,7 +55,7 @@ void ordena(int cartas[], int n){
 }
 
 
-void imprime(int c[], int tam, int ordem){   //N�o � necess�rio passar o tamnho do array
+void imprime(int c[], int tam, int ordem){   //Nao e necessario passar o tamnho do array
     int i;
     if(tam != 0){
         if(ordem == 1){
