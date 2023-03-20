@@ -18,7 +18,7 @@ int menu(){
         return temp;
     } else {
         printf("\t+---------------------------------+\n");
-        printf("\t| VALOR INVALIDA! TENTE NOVAMENTE |\n");
+        printf("\t| OPCAO INVALIDA! TENTE NOVAMENTE |\n");
         printf("\t+---------------------------------+\n\n");
         return menu();
     }
@@ -55,7 +55,7 @@ void ordena(int cartas[], int n){
 }
 
 
-void imprime(int c[], int tam, int ordem){   //Não é necessário passar o tamnho do array
+void imprime(int c[], int tam, int ordem){   //Nï¿½o ï¿½ necessï¿½rio passar o tamnho do array
     int i;
     if(tam != 0){
         if(ordem == 1){
@@ -119,7 +119,7 @@ int main(){
                 imprime(cartas, c, 2);
                 break;
             case 0:
-                printf("Você decidiu sair do programa!");
+                printf("Vocï¿½ decidiu sair do programa!");
                 rep = 0;
                 break;
         }
