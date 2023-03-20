@@ -1,0 +1,82 @@
+//Descrição normal
+TAD filme {
+Dados:
+    titulo: String
+    categoria: String
+    lingua_original: String
+    ano_lancamento: Inteiro
+    duracao: Inteiro
+Operações:
+    consultarFilme(E: titulo, S: filme)
+    listarAno(E: ano_lancçamento, S: lista de filmes)
+    listarCategoria(E: categoria, S: lista de filmes)
+    
+TAD serie {
+Dados:
+    titulo: String
+    categoria: String
+    lingua_original: String
+    ano_lancamento: Inteiro
+    temporada: Inteiro
+    episódios: Inteiro
+Operações:
+    consultarFilme(E: titulo, S: filme)
+    listarAno(E: ano_lancçamento, S: lista de filmes)
+    listarCategoria(E: categoria, S: lista de filmes)
+    
+TAD biblioteca {
+Dados:
+    lista de filmes/series
+Operações:
+    inserirFilme(E: titulo, categoria, lingua_original, ano_lancamento, duracao)
+    inserirSerie(E: titulo, categoria, lingua_original, ano_lancamento, temporada, episódios)
+    remover(E: titulo)
+	
+	
+//HTML TAG's
+<p>
+    TAD filme { <br>
+    Dados:
+    <ul>
+        <li>titulo: String</li>
+        <li>categoria: String</li>
+        <li>lingua_original: String</li>
+        <li>ano_lancamento: Inteiro</li>
+        <li>duracao: Inteiro</li>
+    </ul>
+    Operações:
+    <ul>
+        <li>consultarFilme(E: titulo, S: filme)</li>
+        <li>listarAno(E: ano_lancçamento, S: lista de filmes)</li>
+        <li>listarCategoria(E: categoria, S: lista de filmes)</li>
+    </ul>
+    <br>
+    TAD serie { <br>
+    Dados:
+    <ul>
+        <li>titulo: String</li>
+        <li>categoria: String</li>
+        <li>lingua_original: String</li>
+        <li>ano_lancamento: Inteiro</li>
+        <li>temporada: Inteiro</li>
+        <li>episódios: Inteiro</li>
+    </ul>
+    Operações:
+    <ul>
+        <li>consultarFilme(E: titulo, S: filme)</li>
+        <li>listarAno(E: ano_lancçamento, S: lista de filmes)</li>
+        <li>listarCategoria(E: categoria, S: lista de filmes)</li>
+    </ul>
+    <br>
+    TAD biblioteca {<br>
+    Dados:
+        <ul>
+            <li>lista de filmes/series</li>
+        </ul>
+    Operações:
+    <ul>
+        <li>inserirFilme(E: titulo, categoria, lingua_original, ano_lancamento, duracao)</li>
+        <li>inserirSerie(E: titulo, categoria, lingua_original, ano_lancamento, temporada, episódios)</li>
+        <li>remover(E: titulo)</li>
+    </ul>
+</p>
