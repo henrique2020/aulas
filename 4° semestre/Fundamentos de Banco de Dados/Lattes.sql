@@ -21,7 +21,7 @@ CREATE TABLE pesquisador (
     id VARCHAR(10) NOT NULL,
     nome VARCHAR(100) NOT NULL,
 
-    PRIMARY KEY (codigo)
+    PRIMARY KEY (ID)
 );
 
 CREATE TABLE producao (
