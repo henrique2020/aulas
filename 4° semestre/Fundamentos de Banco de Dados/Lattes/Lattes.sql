@@ -14,7 +14,7 @@ CREATE TABLE pesquisador (
 CREATE TABLE site (
     dominio VARCHAR(50) NOT NULL,
     nome VARCHAR(100) NOT NULL,
-    endereço VARCHAR(100) NOT NULL,
+    endereco VARCHAR(100) NOT NULL,
     cpfPesquisador VARCHAR(11) NOT NULL,
 
     PRIMARY KEY (dominio, cpfPesquisador),
@@ -26,13 +26,12 @@ CREATE TABLE producao (
     nome TEXT NOT NULL,
     descricao TEXT NOT NULL,
     data DATE NOT NULL,
-    orientador VARCHAR(50) NOT NULL,
     localPublicacao VARCHAR(100) NOT NULL,
     
     PRIMARY KEY (codigo)
 );
 
-CREATE TABLE producao_bibliografica (
+CREATE TABLE producao_tecnica (
     codigoProducao VARCHAR(10) NOT NULL,
     area VARCHAR(50) NOT NULL,
     tipo VARCHAR(30) NOT NULL,
@@ -41,7 +40,7 @@ CREATE TABLE producao_bibliografica (
     FOREIGN KEY (codigoProducao) REFERENCES producao (codigo)
 );
 
-CREATE TABLE producao_tecnica (
+CREATE TABLE producao_cultural (
     codigoProducao VARCHAR(10) NOT NULL,
     estilo VARCHAR(100) NOT NULL,
     material TEXT NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE producao_tecnica (
     FOREIGN KEY (codigoProducao) REFERENCES producao (codigo)
 );
 
-CREATE TABLE producao_cultural (
+CREATE TABLE producao_bibliografica (
     codigoProducao VARCHAR(10) NOT NULL,
     autores TEXT NOT NULL,
     editora VARCHAR(100),
@@ -79,11 +78,21 @@ CREATE TABLE patente (
     PRIMARY KEY (codigo)
 );
 
+CREATE TABLE orgao_regulamentador (
+    codigo VARCHAR(10) NOT NULL,
+    codigoPatente VARCHAR(10) NOT NULL,
+    codigoEndereco VARCHAR(10) NOT NULL,
+    abangrencia VARCHAR(50) NOT NULL,
+
+    PRIMARY KEY (codigo, codigoPatente, codigoEndereco),
+    FOREIGN KEY (codigoPatente) REFERENCES patente (codigo)
+    FOREIGN KEY (codigoEndereco) REFERENCES endereco (codigo)
+);
+
 CREATE TABLE projeto (
     codigo VARCHAR(10) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
-    orientador VARCHAR(50) NOT NULL,
     qtdeAlunos INT,
 
     PRIMARY KEY (codigo)
@@ -142,6 +151,7 @@ CREATE TABLE endereco (
 CREATE TABLE pesquisador_producao (
     cpfPesquisador VARCHAR(11) NOT NULL,
     codigoProducao VARCHAR(10) NOT NULL,
+    orientador VARCHAR(50) NOT NULL,
 
     PRIMARY KEY (cpfPesquisador, codigoProducao),
     FOREIGN KEY (cpfPesquisador) REFERENCES pesquisador (cpf),
@@ -169,6 +179,8 @@ CREATE TABLE pesquisador_patente (
 CREATE TABLE pesquisador_projeto (
     cpfPesquisador VARCHAR(11) NOT NULL,
     codigoProjeto VARCHAR(10) NOT NULL,
+    orientador VARCHAR(50) NOT NULL,
+    
 
     PRIMARY KEY (cpfPesquisador, codigoProjeto),
     FOREIGN KEY (cpfPesquisador) REFERENCES pesquisador (cpf),
@@ -254,22 +266,22 @@ INSERT INTO site(dominio, nome, endereço, cpfPesquisador) VALUES
     ('cnpq', 'Plataforma Lattes', 'lattes.cnpq.br', '21675077479'),
     ('cnpq', 'Plataforma Lattes', 'lattes.cnpq.br', '73483759107');
 
-INSERT INTO producao(codigo, nome, descricao, data, orientador, localPublicacao) VALUES
-    ('PROD-00001', 'Análise in silico dos genomas das linhagens selvagem e mutante do fungo Penicillium equinulatum', 'O uso de ferramentas computacionais para o armazenamento e análise de dados permitiu o desenvolvimento da genômica e da proteômica, possibilitando o estudo de sequências de nucleotídeos e de aminoácidos e trazendo novas descobertas nos mais variados domínios.', '2019-01-01 ', 'Scheila de Avila e Silva', 'Site'),
-    ('PROD-00002', 'Lacos Web', 'O projeto Lagoas Costeiras (LACOS) vem sendo executado desde 2007 e seu foco de atuação abrange a região do litoral gaúcho. Dentre seus principais objetivos, estão inclusos estudos sobre as condições ecológicas das lagoas e seu entorno, a situação socioambiental, o uso turístico e a educação ambiental. Durante este período até o presente momento, diversas coletas de dados ecológicos foram realizadas e incorporadas às informações que vêm sendo armazenadas desde meados de 1970', '2019-01-01', 'Daniel Luís Notari', 'Site'),
-    ('PROD-00003', 'Bacpp', 'Predição de elementos regulatórios da expressão de genes de bactérias gram-negativas com aprimoramento da ferramenta computacional BACPP', '2015-01-01', 'Scheila de Ávila e Silva', 'Revista Científica'),
-    ('PROD-00004', 'IntergenicDB', 'O IntergenicDB é um banco de dados que contém sequências de DNA conhecidas como regiões intergênicas (ou promotores) de seres procariotos. O website IntergenicDB é uma ferramenta que prove uma forma simples de efetuar pesquisar e enviar dados para o banco de dados do IntergenicDB..', '2011-01-01', 'Daniel Luís Notari', 'TCC'),
-    ('PROD-00005', 'wSoft - Metodologia Ágil para Desenvolvimento de Software Orientado à Web', 'A modelagem de um software é a linha motriz que conduz as atividades para o seu desenvolvimento.', '2006-01-01', 'Iraci Cristina Silveira', 'Revista Educacional');
+INSERT INTO producao(codigo, nome, descricao, data, localPublicacao) VALUES
+    ('PROD-00001', 'Análise in silico dos genomas das linhagens selvagem e mutante do fungo Penicillium equinulatum', 'O uso de ferramentas computacionais para o armazenamento e análise de dados permitiu o desenvolvimento da genômica e da proteômica, possibilitando o estudo de sequências de nucleotídeos e de aminoácidos e trazendo novas descobertas nos mais variados domínios.', '2019-01-01', 'Site'),
+    ('PROD-00002', 'Lacos Web', 'O projeto Lagoas Costeiras (LACOS) vem sendo executado desde 2007 e seu foco de atuação abrange a região do litoral gaúcho. Dentre seus principais objetivos, estão inclusos estudos sobre as condições ecológicas das lagoas e seu entorno, a situação socioambiental, o uso turístico e a educação ambiental. Durante este período até o presente momento, diversas coletas de dados ecológicos foram realizadas e incorporadas às informações que vêm sendo armazenadas desde meados de 1970', '2019-01-01', 'Site'),
+    ('PROD-00003', 'Bacpp', 'Predição de elementos regulatórios da expressão de genes de bactérias gram-negativas com aprimoramento da ferramenta computacional BACPP', '2015-01-01', 'Revista Científica'),
+    ('PROD-00004', 'IntergenicDB', 'O IntergenicDB é um banco de dados que contém sequências de DNA conhecidas como regiões intergênicas (ou promotores) de seres procariotos. O website IntergenicDB é uma ferramenta que prove uma forma simples de efetuar pesquisar e enviar dados para o banco de dados do IntergenicDB..', '2011-01-01', 'TCC'),
+    ('PROD-00005', 'wSoft - Metodologia Ágil para Desenvolvimento de Software Orientado à Web', 'A modelagem de um software é a linha motriz que conduz as atividades para o seu desenvolvimento.', '2006-01-01', 'Revista Educacional');
 
-INSERT INTO producao_bibliografica(codigoProducao, area, tipo) VALUES 
+INSERT INTO producao_tecnica(codigoProducao, area, tipo) VALUES 
     ('PROD-00003', 'Informática', 'Previsão futura'),
     ('PROD-00004', 'Informática', 'Avanços científicos')
 
-INSERT INTO producao_tecnica(codigoProducao, estilo, material, tipo) VALUES
+INSERT INTO producao_cultural(codigoProducao, estilo, material, tipo) VALUES
     ('PROD-00001', 'Testagem', 'Ferramentas Computacionais', ''),
     ('PROD-00005', 'Tendencia', 'Previsão futura', '')
 
-INSERT INTO producao_cultural (codigoProducao, autores, editora, isbn, tipo) VALUES 
+INSERT INTO producao_bibliografica (codigoProducao, autores, editora, isbn, tipo) VALUES 
     ('PROD-00002', 'Daniel Luís Notari, Giovanni Ely Rocco', 'Editora da Universidade de Caxias do Sul', '0689431201444', 'Teórico');
 
 INSERT INTO evento(codigo, nome, data) VALUES 
@@ -282,10 +294,10 @@ INSERT INTO patente(codigo, nome, descricao, data) VALUES
     ('PATE-00002', 'Gel fixador', 'Gel de secagem rápida capaz de grudar em qualquer tipo de superficie', '2019-04-19'),
     ('PATE-00003', 'Chilete infinito', 'Chiclé com sabor que não desaparece', '2021-11-03')
 
-INSERT INTO projeto(codigo, nome, descricao, orientador, qtdeAlunos) VALUES 
-    ('PROJ-00001', 'Projeto de evolução da implementação do portal Bacpp de predição de promotores', 'Descricao', 'Diego Silva', '5'),
-    ('PROJ-00002', 'rojeto de um portal web para consulta de sequencias intergênicas', 'Descricao', 'Diego Silva', '5'),
-    ('PROJ-00003', ' IMPORTAÇÃO DE DADOS PARA O BANCO DE DADOS DO PROJETO LACOS WEB', 'Descricao', 'Diego Silva', '5');
+INSERT INTO projeto(codigo, nome, descricao, qtdeAlunos) VALUES 
+    ('PROJ-00001', 'Projeto de evolução da implementação do portal Bacpp de predição de promotores', 'Descricao', '5'),
+    ('PROJ-00002', 'rojeto de um portal web para consulta de sequencias intergênicas', 'Descricao', '5'),
+    ('PROJ-00003', ' IMPORTAÇÃO DE DADOS PARA O BANCO DE DADOS DO PROJETO LACOS WEB', 'Descricao', '5');
 
 INSERT INTO banca(codigo, nome, descricao, data, tipo) VALUES 
     ('BANC-00001','Predição de regiões promotoras em Bacillus subtilis através do uso de redes neurais artificiais e máquinas de vetor de suporte','DESCRICAO','2018-01-01','Tese'),
@@ -314,13 +326,18 @@ INSERT INTO endereco(codigo, cidade, bairro, numero, estado, cep) VALUES
     ('ENDE-00001','Caxias do Sul','Vila Cristina','S/N','RS','9200030'),
     ('ENDE-00002','Farroupilnha','Ambaí','112','RS','96263000');
 
+INSERT INTO orgao_regulamentador(codigo, codigoPatente, codigoEndereco, abangrencia) VALUES
+    ('OGRE-00001', 'PATE-00001', 'ENDE-00001', 'Nacionais'),
+    ('OGRE-00002', 'PATE-00002', 'ENDE-00002', 'Internacioanl'),
+    ('OGRE-00003', 'PATE-00003', 'ENDE-00002', 'Nacionais');
+
 -- INSERT INTO CONNECTION TABLES
-INSERT INTO pesquisador_producao (cpfPesquisador, codigoProducao) VALUES 
-    ('08094448792', 'PROD-00001'), 
-    ('13625365715', 'PROD-00002'), 
-    ('21675077479', 'PROD-00003'), 
-    ('61083713663', 'PROD-00004'), 
-    ('73483759107', 'PROD-00005')
+INSERT INTO pesquisador_producao (cpfPesquisador, codigoProducao, orientador) VALUES 
+    ('08094448792', 'PROD-00001', 'Scheila de Avila e Silva'), 
+    ('13625365715', 'PROD-00002', 'Daniel Luís Notari'), 
+    ('21675077479', 'PROD-00003', 'Scheila de Ávila e Silva'), 
+    ('61083713663', 'PROD-00004', 'Daniel Luís Notari'), 
+    ('73483759107', 'PROD-00005', 'Iraci Cristina Silveira');
 
 INSERT INTO pesquisador_evento (cpfPesquisador, codigoEvento) VALUES 
     ('08094448792', 'EVEN-00001'), 
@@ -337,11 +354,11 @@ INSERT INTO pesquisador_patente (cpfPesquisador, codigoPatente) VALUES
     ('13625365715', 'PATE-00001'), 
     ('08094448792', 'PATE-00001')
 
-INSERT INTO pesquisador_projeto (cpfPesquisador, codigoProjeto) VALUES 
-    ('08094448792', 'PROJ-00001'), 
-    ('13625365715', 'PROJ-00001'), 
-    ('13625365715', 'PROJ-00003'), 
-    ('73483759107', 'PROJ-00002');
+INSERT INTO pesquisador_projeto (cpfPesquisador, codigoProjeto, orientador) VALUES 
+    ('08094448792', 'PROJ-00001', 'Diego Silva'), 
+    ('13625365715', 'PROJ-00001', 'Diego Silva'), 
+    ('13625365715', 'PROJ-00003', 'Diego Silva'), 
+    ('73483759107', 'PROJ-00002', 'Diego Silva');
 
 INSERT INTO pesquisador_banca (cpfPesquisador, codigoBanca) VALUES 
     ('08094448792', 'BANC-00001'), 
@@ -372,6 +389,6 @@ INSERT INTO instituicao_atuacao (codigoInstituicao, codigoAtuacao) VALUES
     ('INST-00001', 'ATUA-00002'), 
     ('INST-00001', 'ATUA-00004');
 
-INSERT INTO instituicao_endereco (codigoInstituicao, codigoEndereco) VALUES 
+INSERT INTO instituicao_endereco (codigoInstituicao, codigoEndereco ''', CAMPUS???''') VALUES 
     ('INST-00001', 'ENDE-00001'), 
     ('INST-00001', 'ENDE-00002');
