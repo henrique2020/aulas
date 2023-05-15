@@ -26,23 +26,23 @@ void insere(char *p){
         else { pos = p[0] - 'a'; }
         inicio = dicionario[pos];
 
-        if(inicio == NULL){
+        if(inicio == NULL){ //Caso a lista esteja vazia insere o 1° elemento
             dicionario[pos] = novo;
 
         } else {
             struct ELEMENTO *ant = inicio, *aux = inicio;
-            while(aux != NULL && strcasecmp(aux->palavra, p) < 0){
+            while(aux != NULL && strcasecmp(aux->palavra, p) < 0){  //Procura o último elemento que seja menor que a palavra fornecida
                 ant = aux;
                 aux = aux->prox;
             }
 
-            if(strcasecmp(p, aux->palavra) == 0){
+            if(strcasecmp(p, aux->palavra) == 0){   //Verifica se o elemento atual e a palavra são os mesmos. Se forem os mesmos, aumenta o número de aparições da palavra
                 aux->ocorrencias += 1;
             } else {
-                if(aux!=NULL)
+                if(aux!=NULL)   //Verifica se o elemento atual possui algum valor. Se possuir, atualiza o prox e ant
                     aux->ant = novo;
                     novo->prox = aux;
-                if(ant!=NULL)
+                if(ant!=NULL)   //Verifica se o elemento anterior possui algum valor. Se possuir, atualiza o ant
                     novo->ant = ant;
                 ant->prox = novo;
             }
