@@ -2,21 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct ELEMENTO{
+typedef struct {
     char palavra[50];       //Palavra inserida
     int ocorrencias;        //Número de vezes que a palavra aparece
     struct ELEMENTO *prox;  //Próxima palavra
     struct ELEMENTO *ant;
-};
+} ELEMENTO; 
 
-struct ELEMENTO *dicionario[26];    //Dicionário para as letras iniciais
+ELEMENTO *dicionario[26];    //Dicionário para as letras iniciais
 
 void insere(char *p){
     int pos;
-    struct ELEMENTO *inicio, *novo;
+    ELEMENTO *inicio, *novo;
 
     if(p != NULL){
-        novo = (struct ELEMENTO*)malloc(sizeof(struct ELEMENTO));
+        novo = (ELEMENTO*)malloc(sizeof(ELEMENTO));
         novo->ocorrencias = 1;
         novo->prox = NULL;
         novo->ant = NULL;
@@ -30,7 +30,7 @@ void insere(char *p){
             dicionario[pos] = novo;
 
         } else {
-            struct ELEMENTO *ant = inicio, *aux = inicio;
+            ELEMENTO *ant = inicio, *aux = inicio;
             while(aux != NULL && strcasecmp(aux->palavra, p) < 0){  //Procura o último elemento que seja menor que a palavra fornecida
                 ant = aux;
                 aux = aux->prox;
@@ -53,7 +53,7 @@ void insere(char *p){
 /*
 void escrevePalavras(){
     int i;
-    struct ELEMENTO *aux;
+    ELEMENTO *aux;
     for (i = 0; i < 26; i++){
 
         printf("%c: \n", i+'A');
@@ -70,7 +70,7 @@ void escrevePalavras(){
 
 void escrevePalavras(char ordecacao){
     int i;
-    struct ELEMENTO *aux, *ant;
+    ELEMENTO *aux, *ant;
     for (i = 0; i < 26; i++){
         printf("%c: \n", i+'A');
         if(dicionario[i] != NULL){
