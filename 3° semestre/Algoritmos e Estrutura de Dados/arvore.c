@@ -69,6 +69,7 @@ TNoA *criaNo(char ch) {
 
 int main(void) {
   TNoA *raiz;
+  /*
   raiz = criaNo(5);
   //No da esquerda
   raiz->esq = criaNo(10);
@@ -78,6 +79,17 @@ int main(void) {
   //No da direita
   raiz->dir = criaNo(7);
   raiz->dir->dir = criaNo(1);
+  */
+
+  raiz = criaNo(12);
+  raiz->esq = criaNo(10);
+  raiz->esq->esq = criaNo(1);
+  raiz->esq->esq->dir = criaNo(8);
+  raiz->esq->esq->dir->esq = criaNo(5);
+  raiz->esq->esq->dir->esq->esq = criaNo(3);
+  raiz->dir = criaNo(20);
+  raiz->dir->esq = criaNo(14);
+  raiz->dir->dir = criaNo(25);
 
   printf("PRE-ORDEM\n");
   printf("ESQUERDA: \n");
