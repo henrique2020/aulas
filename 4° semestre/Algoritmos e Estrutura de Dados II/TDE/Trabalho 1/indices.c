@@ -4,7 +4,6 @@
 
 #define ID 6
 #define APP_NAME 150
-#define CATEGORY 150
 #define RATING 3
 #define INSTALLS 9
 
@@ -29,13 +28,13 @@ REGISTRO *le(char *linha){
     reg->rating = atof(strtok(NULL, ";"));
     reg->installs = atoi(strtok(NULL, ";"));
 
-    printf("%d;%s;%.1f;%d\n", reg->id, reg->app_name, reg->rating, reg->installs);
+    //printf("%d;%s;%.1f;%d\n", reg->id, reg->app_name, reg->rating, reg->installs);
 
     return reg;
 }
 
 
-void pesquisaBinaria(FILE *arquivo, char *palavra, int tam) {
+REGISTRO *pesquisaBinaria(FILE *arquivo, char *palavra, int tam) {
     char linha[caracteres];
     int inicio = 0, comparacoes = 0, fim, cmp;
 
@@ -52,13 +51,7 @@ void pesquisaBinaria(FILE *arquivo, char *palavra, int tam) {
 
         cmp = strcasecmp(reg->app_name, palavra);
         if (cmp == 0) {
-            printf("+-----------------------------------------------+ \n");
-            printf("| Informacoes encontradas! \n");
-            printf("| Aplicativo: %s\n", reg->app_name);
-            printf("| Nota: %.1f\n", reg->rating);
-            printf("| Instalacoes: %d+\n", reg->installs);
-            printf("+-----------------------------------------------+ \n");
-            return;
+            return reg;
         } else if (cmp < 0) {
             inicio = meio + 1;
         } else {
@@ -66,19 +59,35 @@ void pesquisaBinaria(FILE *arquivo, char *palavra, int tam) {
         }
     }
 
-    printf("Nao encontrado\n");
+    return NULL;
+}
+
+
+void exibeApp(REGISTRO *reg){
+    if (reg != NULL) {
+        printf("+-----------------------------------------------+ \n");
+        printf("| Aplicativo: %s\n", reg->app_name);
+        printf("| Nota: %.1f\n", reg->rating);
+        printf("| Instalacoes: %d+\n", reg->installs);
+        printf("+-----------------------------------------------+ \n");
+    } else {
+        printf("App nao encontrado\n");
+    }
 }
 
 
 int main() {
     FILE *arquivo_csv, *arquivo_binario;
+    REGISTRO *reg;
+    char palavra[APP_NAME];
+
+     //Leitura e criação do arquivo binário
     arquivo_csv = fopen("data.txt", "r");
     if (arquivo_csv == NULL) {
         perror("Erro ao abrir o arquivo CSV");
         return 1;
     }
 
-    //Leitura e criação do arquivo binário
     arquivo_binario = fopen("indice1.bin", "wb");
     if (arquivo_binario == NULL) {
         perror("Erro ao criar o arquivo binário");
@@ -104,14 +113,17 @@ int main() {
     fclose(arquivo_binario);
 
 
+    //Pesquisa Binária
     arquivo_binario = fopen("indice1.bin", "rb");
     fseek(arquivo_binario, 0, SEEK_END);
     int tamanho = ftell(arquivo_binario);
-
-    char palavra[caracteres];
+    
     printf("Digite o nome: ");
-    scanf("%s",palavra);
-    pesquisaBinaria(arquivo_binario, palavra, tamanho);
+    fgets(palavra, APP_NAME, stdin);
+    palavra[strcspn(palavra, "\n")] = 0;
+    
+    reg = pesquisaBinaria(arquivo_binario, palavra, tamanho);
+    exibeApp(reg);
 
     fclose(arquivo_binario);
 
