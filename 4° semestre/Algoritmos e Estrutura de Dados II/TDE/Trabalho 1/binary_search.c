@@ -7,9 +7,7 @@
 #define RATING 3
 #define INSTALLS 9
 
-
 int caracteres = ID+APP_NAME+RATING+INSTALLS;
-
 
 // Estrutura para os registros
 typedef struct registro {
@@ -117,11 +115,11 @@ int main() {
     arquivo_binario = fopen("indice1.bin", "rb");
     fseek(arquivo_binario, 0, SEEK_END);
     int tamanho = ftell(arquivo_binario);
-    
+
     printf("Digite o nome: ");
     fgets(palavra, APP_NAME, stdin);
     palavra[strcspn(palavra, "\n")] = 0;
-    
+
     reg = pesquisaBinaria(arquivo_binario, palavra, tamanho);
     exibeApp(reg);
 
