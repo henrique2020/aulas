@@ -69,8 +69,7 @@ INDICE_APP_NAME *pesquisaBinaria(char *indice, char *palavra, int tam) {
         fread(linha, caracteres_name, 1, arquivo_indice);
 
         INDICE_APP_NAME *ind = le_indice(linha);
-        printf("%s\n", ind->name);
-
+        //printf("%s\n", ind->name);
 
         cmp = strcasecmp(ind->name, palavra);
         if (cmp == 0) {
@@ -127,8 +126,8 @@ int main() {
 
     do {
         printf("SELECIONE UMA DAS OPCOES ABAIXO\n");
-        printf("01. BUSCAR APP ATRAVES DE INDICE\n");
-        printf("02. EXIBIR QUANTIDADE DE INDICES\n");
+        printf("01. BUSCAR APP ATRAVES DO NOME\n");
+        //printf("02. EXIBIR QUANTIDADE DE INDICES\n");
         printf("00. SAIR\n");
         printf("OPCAO DESEJADA? ");
         scanf("%d", &op);

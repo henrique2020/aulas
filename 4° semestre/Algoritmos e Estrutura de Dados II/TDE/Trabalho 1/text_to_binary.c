@@ -36,7 +36,7 @@ REGISTRO *le(char *linha){
 
 //Leitura e criação do arquivo de dados binário
 void text_to_binary(char *texto, char *binario){
-    FILE *arquivo_csv = fopen("data.txt", "r");
+    FILE *arquivo_csv = fopen(texto, "r");
     FILE *arquivo_binario = fopen(binario, "wb");
 
     if (arquivo_csv == NULL) {
@@ -156,7 +156,7 @@ void indice_name_bin(char *texto, char *indice) {
 
 
 int main() {
-    char texto[] = "data.txt";
+    char texto[] = "data.csv";
     char bin[] = "./bins/data.bin";
 
     printf("CONVERTENDO O ARQUIVO DE TEXTO PARA ARQUIVO BINARIO...\n");
