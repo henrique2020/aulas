@@ -4,6 +4,8 @@
 Programacao 2/.vscode/tasks.json
 /.metadata/
 
+/__pycache__/
+
 # Ignorar os seguintes arquivos 
 *.exe
 *.o
