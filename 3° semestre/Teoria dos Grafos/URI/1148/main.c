@@ -3,28 +3,24 @@
 
 #define INF 9999
 
-/*
-NÃO FUNCIONA! INCOMPLETO
-*/
-
-typedef struct aresta{
+typedef struct aresta {
     int origem;
     int destino;
     int horas;
 } ARESTA;
 
-int Bellman(ARESTA arestas[], int s, int c2, int n_cidades, int n_arestas){
+int Bellman(ARESTA arestas[], int c1, int c2, int n_cidades, int n_arestas){
     int d[n_cidades];
     for(int i = 0; i<n_cidades; i++){
         d[i] = INF;
     }
 
-    d[s] = 0;
+    d[c1] = 0;
     for(int i = 0; i<n_arestas; i++){
         for(int j = 0; j < n_arestas; j++){
             int c1 = arestas[j].origem, c2 = arestas[j].destino;
             if(d[c2] > d[c1]+arestas[j].horas){
-                d[c2] > d[c1]+arestas[j].horas;
+                d[c2] = d[c1]+arestas[j].horas;
             }
         }
     }
