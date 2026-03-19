@@ -1,0 +1,56 @@
+_somaVetor:
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 16
+	mov	DWORD PTR [ebp-8], 0
+	mov	DWORD PTR [ebp-4], 0
+	jmp	L2
+L3:
+	mov	eax, DWORD PTR [ebp-4]
+	lea	edx, [0+eax*4]
+	mov	eax, DWORD PTR [ebp+8]
+	add	eax, edx
+	mov	eax, DWORD PTR [eax]
+	add	DWORD PTR [ebp-8], eax
+	add	DWORD PTR [ebp-4], 1
+L2:
+	mov	eax, DWORD PTR [ebp-4]
+	cmp	eax, DWORD PTR [ebp+12]
+	jl	L3
+	mov	eax, DWORD PTR [ebp-8]
+	leave
+	ret
+LC0:
+_main:
+	push	ebp
+	mov	ebp, esp
+	and	esp, -16
+	sub	esp, 48
+	call	___main
+	mov	DWORD PTR [esp], 0
+	call	_time
+	mov	DWORD PTR [esp], eax
+	call	_srand
+	mov	DWORD PTR [esp+44], 0
+	jmp	L6
+L7:
+	call	_rand
+	mov	edx, eax
+	mov	eax, DWORD PTR [esp+44]
+	mov	DWORD PTR [esp+20+eax*4], edx
+	add	DWORD PTR [esp+44], 1
+L6:
+	cmp	DWORD PTR [esp+44], 4
+	jle	L7
+	mov	DWORD PTR [esp+4], 5
+	lea	eax, [esp+20]
+	mov	DWORD PTR [esp], eax
+	call	_somaVetor
+	mov	DWORD PTR [esp+40], eax
+	mov	eax, DWORD PTR [esp+40]
+	mov	DWORD PTR [esp+4], eax
+	mov	DWORD PTR [esp], OFFSET FLAT:LC0
+	call	_printf
+	mov	eax, 0
+	leave
+	ret

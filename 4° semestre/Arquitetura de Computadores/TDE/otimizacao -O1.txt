@@ -1,0 +1,51 @@
+_somaVetor:
+	mov	ecx, DWORD PTR [esp+4]
+	mov	eax, DWORD PTR [esp+8]
+	test	eax, eax
+	jle	L4
+	mov	edx, ecx
+	lea	ecx, [ecx+eax*4]
+	mov	eax, 0
+L3:
+	add	eax, DWORD PTR [edx]
+	add	edx, 4
+	cmp	edx, ecx
+	jne	L3
+	ret
+L4:
+	mov	eax, 0
+	ret
+LC0:
+_main:
+	push	ebp
+	mov	ebp, esp
+	push	esi
+	push	ebx
+	and	esp, -16
+	sub	esp, 48
+	call	___main
+	mov	DWORD PTR [esp], 0
+	call	__time32
+	mov	DWORD PTR [esp], eax
+	call	_srand
+	lea	ebx, [esp+28]
+	lea	esi, [esp+48]
+L7:
+	call	_rand
+	mov	DWORD PTR [ebx], eax
+	add	ebx, 4
+	cmp	ebx, esi
+	jne	L7
+	mov	DWORD PTR [esp+4], 5
+	lea	eax, [esp+28]
+	mov	DWORD PTR [esp], eax
+	call	_somaVetor
+	mov	DWORD PTR [esp+4], eax
+	mov	DWORD PTR [esp], OFFSET FLAT:LC0
+	call	_printf
+	mov	eax, 0
+	lea	esp, [ebp-8]
+	pop	ebx
+	pop	esi
+	pop	ebp
+	ret

@@ -1,0 +1,142 @@
+- Segmentação: cálculo do endereço físico
+Calcule o endereço físico para os endereços lógicos (hexadecimal) a seguir:
+a. 1234:5678
+   12340
+  + 5678
+  -------
+   179B8H
+
+b. ABCD:0123
+   ABCD0
+  + 0123
+  -------
+   ABDF3H
+
+c. 2000:3FFF
+   20000
+  + 3FFF
+  -------
+   23FFFH
+
+d. FFFF:0001 
+   FFFF0
+  + 0001
+  -------
+   FFFF1H
+
+e. 0ABC:DEF0
+   0ABC0
+  + DEF0
+  -------
+   18AB0H
+
+f. 1230:4500
+   12300
+  + 4500
+  -------
+   16800H
+
+g. 7FFF:8000
+   7FFF0
+  + 8000
+  -------
+   87FF0H
+
+h. 1111:2222
+   11110
+  + 2222
+  -------
+   13332H
+
+i. 9ABC:1234
+   9ABC0
+  + 1234
+  -------
+   9BDF4H
+
+j. 4321:0FED
+   43210
+  + 0FED
+  -------
+   441FDH
+
+Vetor de Interrupções: endereço da rotina de tratamento
+
+Dado o fragmento de memória a seguir
+0000:0010 8B 01 70 00 B9 06 0C 02-40 07 0C 02 FF 03 0C 02
+0000:0020 46 07 0C 02 OA 04 0C 02-3A 00 A7 03 54 00 A7 03
+0000:0030 6E 00 A7 03 88 00 A7 03-A2 00 A7 03 FF 03 0C 02
+0000:0040 A9 08 0C 02 A4 09 0C 02-AA 09 0C 02 SD 04 0C 02
+0000:0050 BO 09 0C 02 OD 02 DB 02-C4 09 0C 02 8B 05 0C 02
+0000:0060 0E 0C 0C 02 14 0C 0C 02-1F 0C 0C 02 AD 06 0C 02
+0000:0070 AD 06 0C 02 A4 FO 00 F0-37 05 0C 02 BE 4F 00 C0
+0000:0080 72 10 A7 00 7C 10 A7 00-4F 03 76 05 8A 03 76 05
+---------------------------------------------------------
+Endereços 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F
+
+Determine o endereço lógico da rotina de tratamento das interrupções a seguir. A resposta deve estar no formato de endereço lógico (separado por ':'), as letras maiúsculas no caso de caractere hexadecimal e sem o H (por exemplo, 1A34:456B).
+
+OBS.: Pegar o valor e fazer x4 para descobrir o endereço fisico
+
+a. 07H - 7x4 = 28D = 1CH (7H = 7D)
+	IP = 03FFH
+	CS = 020CH
+b. 10H - 10x4 = 64D = 40H (10H = 16D [1x16 + 0])
+	IP = 08A9H
+	CS = 020CH
+c. 14H - 14x4 = 80D = 50H (14H = 20D [1x16 + 4])
+	IP = 09BOH
+	CS = 020CH
+d. 16H - 16x4 = 88D = 58H (16H = 22D [1x16 + 6])
+	IP = 09C4H
+	CS = 020CH
+e. 21H - 21x4 = 132D = 84H (21H = 33D [2x16 + 1])
+	IP = 107CH
+	CS = 00A7H
+
+
+	
+Segmentação: cálculo do endereço efetivo
+
+Dado que os registradores possuem os seguintes valores BX = 100H, BP = 200H, DI = 300H e SI = 400H, calcule o endereço efetivo, mostre o endereço lógico e o endereço físico, assumindo que SS = 1000H , ES = 2000H e DS = 3000H:
+OBS.: Caso tenha BX, SI, DI -> DS. Caso tenha BP -> SS
+a. [BX + SI + 50H]
+  EE = 100H + 400H + 50H = 550H 	(endereço efetivo)
+  EL = DS:EE = 3000:0550 			(endereço lógico)
+  EF = 3000H * 10H + 550H = 30550H 	(endereço fÍsico)
+b. [BP + DI + 100H]
+  EE = 200H + 300H + 100H = 600H	(endereço efetivo)
+  EL = SS:EE = 1000:0600			(endereço lógico)
+  EF = 1000H * 10H + 600H = 10600H	(endereço fÍsico)
+c. [BX + 40H]
+  EE = 100H + 40H = 140H			(endereço efetivo)
+  EL = DS:EE = 3000:0140 			(endereço lógico)
+  EF = 3000H * 10H + 140H = 30140H 	(endereço fÍsico)
+d. [SI + 30H]
+  EE = 400H + 30H = 430H			(endereço efetivo)
+  EL = DS:EE = 3000:0430			(endereço lógico)
+  EF = 3000H * 10H + 430H = 30430H 	(endereço fÍsico)
+e. [BP + 20H]
+  EE = 200H + 20H = 220H			(endereço efetivo)
+  EL = SS:EE = 1000:0220			(endereço lógico)
+  EF = 1000H * 10H + 220H = 10220H 	(endereço fÍsico)
+f. [BX + DI]
+  EE = 100H + 300H = 400H			(endereço efetivo)
+  EL = DS:EE = 3000:0400			(endereço lógico)
+  EF = 3000H * 10H + 400H = 30400H 	(endereço fÍsico)
+g. [SI + 70H]
+  EE = 400H + 70H = 470H			(endereço efetivo)
+  EL = DS:EE = 3000:0470			(endereço lógico)
+  EF = 3000H * 10H + 470H = 30470H 	(endereço fÍsico)
+h. [BP + SI + 10H]
+  EE = 200H + 400H + 10H = 610H		(endereço efetivo)
+  EL = SS:EE = 1000:0610			(endereço lógico)
+  EF = 1000H * 10H + 610H = 10610H 	(endereço fÍsico)
+i. [BX + 60H]
+  EE = 100H + 60H = 160H			(endereço efetivo)
+  EL = DS:EE = 3000:0160			(endereço lógico)
+  EF = 3000H * 10H + 160H = 30160H  (endereço fÍsico)
+j. [DI + A0H]
+  EE = 300H + A0H = 3A0H 			(endereço efetivo)
+  EL = DS:EE = 3000:03A0			(endereço lógico)
+  EF = 3000H * 10H + 3A0H = 303A0H 	(endereço fÍsico)

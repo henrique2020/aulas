@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1758843797 source:d:\code\aulas\4° semestre\arquitetura de computadores\tde\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
