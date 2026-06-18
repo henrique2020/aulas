@@ -1,0 +1,10 @@
+3
+S -> B C
+B -> a B b | c
+C -> d C e | f
+5
+aacbbddfee
+acbdfe
+abcdef
+cf
+fc
