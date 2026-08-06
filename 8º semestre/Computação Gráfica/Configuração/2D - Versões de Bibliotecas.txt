@@ -1,0 +1,2 @@
+CodeBlocks : Versão 20.03 : Link https://www.codeblocks.org/downloads/binaries/
+SDL2 : Versão 2.30.6 : Link  https://github.com/libsdl-org/SDL/releases/tag/release-2.30.6
