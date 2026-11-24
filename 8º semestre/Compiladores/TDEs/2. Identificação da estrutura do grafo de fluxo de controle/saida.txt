@@ -1,0 +1,11 @@
+Bloco 1: succs { 3 2 }
+Bloco 2: succs { 3 }
+Bloco 3: succs {  }
+
+<bb 1>:
+if a>0 goto bb3
+<bb 2>:
+t0 = t0 +1
+goto bb3;
+<bb 3>:
+t1 = t0+1

@@ -1,0 +1,51 @@
+LB000:
+	push 1
+	gofalse LB002
+	valor-l i
+	push 0
+	:=
+	pop
+	valor-l k
+	push 10
+	:=
+	pop
+LB003:
+	valor-r i
+	valor-r k
+	<
+	gofalse LB005
+LB006:
+	push 1
+	gofalse LB007
+	valor-l j
+	valor-r j
+	push 1
+	+
+	:=
+	pop
+	valor-r j
+	push 100
+	>
+	gofalse LB008
+	goto LB007
+LB008:
+	goto LB006
+LB007:
+LB004:
+	valor-l i
+	valor-r i
+	push 1
+	+
+	:=
+	pop
+	valor-l k
+	valor-r k
+	push 1
+	-
+	:=
+	pop
+	goto LB003
+LB005:
+LB001:
+	goto LB000
+LB002:

@@ -1,0 +1,5 @@
+if a>0 goto L4
+t0 = t0 +1
+goto L4;
+L4:
+t1 = t0+1
